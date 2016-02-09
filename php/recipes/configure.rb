@@ -33,6 +33,19 @@ node[:deploy].each do |application, deploy|
       :layers => node[:opsworks][:layers],
       :stack_name => node[:opsworks][:stack][:name]
     )
+  end
+
+    # write out opsworks.php
+  template "#{deploy[:deploy_to]}/shared/config/config.php" do
+    cookbook 'php'
+    source 'config.php.erb'
+    mode '0660'
+    owner deploy[:user]
+    group deploy[:group]
+    variables(
+      :lb_hostname => deploy[:lb_hostname],
+      :encryption_key => deploy[:encryption_key]
+    )
     
   end
 end
