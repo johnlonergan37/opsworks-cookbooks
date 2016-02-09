@@ -5,7 +5,7 @@ node[:deploy].each do |application, deploy|
   end
 
   # write out opsworks.php
-  template "#{deploy[:deploy_to]}/shared/config/opsworks.php" do
+  template "#{deploy[:deploy_to]}/shared/config/opsworksf.php" do
     cookbook 'php'
     source 'opsworks.php.erb'
     mode '0660'
@@ -23,7 +23,7 @@ node[:deploy].each do |application, deploy|
   # write out opsworks.php
   template "#{deploy[:deploy_to]}/current/application/config/database.php" do
     cookbook 'php'
-    source 'database.php.erb'
+    source 'opswork.php.erb'
     mode '0660'
     owner deploy[:user]
     group deploy[:group]
