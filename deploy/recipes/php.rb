@@ -2,7 +2,7 @@
 # Cookbook Name:: deploy
 # Recipe:: php
 #
-
+Chef::Log.level = :debug
 include_recipe 'deploy'
 include_recipe "mod_php5_apache2"
 include_recipe "mod_php5_apache2::php"
