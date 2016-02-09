@@ -43,8 +43,7 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     group deploy[:group]
     variables(
-      :lb_hostname => deploy[:lb_hostname],
-      :encryption_key => deploy[:encryption_key]
+      :bacon => deploy[:bacon]
     )
     
   end
