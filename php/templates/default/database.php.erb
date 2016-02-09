@@ -3,10 +3,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '<%= @database[:host] %>';
-$db['default']['username'] = '<%= @database[:username] %>';
-$db['default']['password'] = '<%= @database[:password] %>';
-$db['default']['database'] = '<%= @database[:database] %>';
+$db['default']['hostname'] = '<%= @db_host %>';
+$db['default']['username'] = '<%= @db_username %>';
+$db['default']['password'] = '<%= @db_password %>';
+$db['default']['database'] = '<%= @db_name %>';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

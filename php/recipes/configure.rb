@@ -30,10 +30,10 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     group deploy[:group]
     variables(
-      :database => deploy[:database],
-      :memcached => deploy[:memcached],
-      :layers => node[:opsworks][:layers],
-      :stack_name => node[:opsworks][:stack][:name]
+        :db_host => node[:deploy][:ci_config][:db_host],
+        :db_username => node[:deploy][:ci_config][:db_username],
+        :db_password => node[:deploy][:ci_config][:db_password],
+        :db_name => node[:deploy][:ci_config][:db_name]
     )
   end
 
