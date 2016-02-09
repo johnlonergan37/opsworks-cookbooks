@@ -17,9 +17,7 @@ node[:deploy].each do |application, deploy|
       :layers => node[:opsworks][:layers],
       :stack_name => node[:opsworks][:stack][:name]
     )
-    only_if do
-      File.exists?("#{deploy[:deploy_to]}/shared/config")
-    end
+    
   end
 
   # write out opsworks.php
@@ -35,8 +33,6 @@ node[:deploy].each do |application, deploy|
       :layers => node[:opsworks][:layers],
       :stack_name => node[:opsworks][:stack][:name]
     )
-    only_if do
-      File.exists?("#{deploy[:deploy_to]}/current/application/config")
-    end
+    
   end
 end
