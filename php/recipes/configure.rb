@@ -50,4 +50,29 @@ node[:deploy].each do |application, deploy|
     )
     
   end
+
+      # write out php.ini
+  template "/etc/php.ini" do
+    cookbook 'php'
+    source 'php.ini.erb'
+    mode '0660'
+    owner deploy[:user]
+    group deploy[:group]
+    variables(
+      :timezone => node[:deploy][:ci_config][:timezone]
+    )
+  end
+
+        # write out index.php
+  template "#{deploy[:deploy_to]}/current/index.php" do
+    cookbook 'php'
+    source 'index.php.erb'
+    mode '0660'
+    owner deploy[:user]
+    group deploy[:group]
+
+    variables(
+        :environment => node[:deploy][:ci_config][:environment]
+        )
+  end
 end
