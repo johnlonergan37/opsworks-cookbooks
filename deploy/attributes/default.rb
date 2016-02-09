@@ -16,4 +16,3 @@
 
 include_attribute "deploy::deploy"
 include_attribute "deploy::customize"
-include_attribute "deploy::bacon"

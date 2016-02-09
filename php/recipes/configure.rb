@@ -44,7 +44,9 @@ node[:deploy].each do |application, deploy|
     mode '0660'
     owner deploy[:user]
     group deploy[:group]
-   
+    variables(
+      :encryption_key => node[:deploy][:bacon][:encryption_key]
+    )
     
   end
 end
