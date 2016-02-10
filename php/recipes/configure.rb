@@ -59,7 +59,8 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     group deploy[:group]
     variables(
-      :timezone => node[:deploy][:ci_config][:timezone]
+      :timezone => node[:deploy][:ci_config][:timezone],
+      :memcache_cluster_uri => node[:deploy][:ci_config][:memcache_cluster_uri]
     )
   end
 

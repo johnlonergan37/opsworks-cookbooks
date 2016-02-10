@@ -12,11 +12,12 @@ normal[:mod_php5_apache2][:packages] = [
     "php-xml",
     "php-common",
     "php-xmlrpc",
+    "php-devel",
     "php-gd",
     "php-cli",
     "php-pear-Auth-SASL",
     "php-mcrypt",
-    "php-pecl-memcache",
+    "php-pecl-memcached",
     "php-pear",
     "php-pear-XML-Parser",
     "php-pear-DB",
@@ -25,4 +26,6 @@ normal[:mod_php5_apache2][:packages] = [
     "php-devel",
     "php-pear-Mail",
     "php-pear-Mail-Mime"
+
+   
   ]
