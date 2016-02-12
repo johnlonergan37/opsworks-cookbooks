@@ -1,3 +1,24 @@
+node[:configure].each do |application, deploy|
+  if deploy[:application_type] != 'php'
+    Chef::Log.debug("Skipping php::configure application #{application} as it is not an PHP app")
+    next
+  end
+
+      # write out php.ini
+  template "/etc/php.ini" do
+    cookbook 'php'
+    source 'php.ini.erb'
+    mode '0660'
+    owner deploy[:user]
+    group deploy[:group]
+    variables(
+      :timezone => node[:deploy][:ci_config][:timezone],
+      :memcache_cluster_uri => node[:deploy][:ci_config][:memcache_cluster_uri]
+    )
+  end
+
+end
+
 node[:deploy].each do |application, deploy|
   if deploy[:application_type] != 'php'
     Chef::Log.debug("Skipping php::configure application #{application} as it is not an PHP app")
@@ -54,20 +75,7 @@ node[:deploy].each do |application, deploy|
     )
     
   end
-
-      # write out php.ini
-  template "/etc/php.ini" do
-    cookbook 'php'
-    source 'php.ini.erb'
-    mode '0660'
-    owner deploy[:user]
-    group deploy[:group]
-    variables(
-      :timezone => node[:deploy][:ci_config][:timezone],
-      :memcache_cluster_uri => node[:deploy][:ci_config][:memcache_cluster_uri]
-    )
-  end
-
+  
         # write out index.php
   template "#{deploy[:deploy_to]}/current/index.php" do
     cookbook 'php'
