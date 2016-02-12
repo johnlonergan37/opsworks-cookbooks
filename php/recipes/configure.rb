@@ -33,7 +33,11 @@ node[:deploy].each do |application, deploy|
         :db_host => node[:deploy][:ci_config][:db_host],
         :db_username => node[:deploy][:ci_config][:db_username],
         :db_password => node[:deploy][:ci_config][:db_password],
-        :db_name => node[:deploy][:ci_config][:db_name]
+        :db_name => node[:deploy][:ci_config][:db_name],
+        :ro_db_host => node[:deploy][:ci_config][:ro_db_host],
+        :ro_db_username => node[:deploy][:ci_config][:ro_db_username],
+        :ro_db_password => node[:deploy][:ci_config][:ro_db_password],
+        :ro_db_name => node[:deploy][:ci_config][:ro_db_name]
     )
   end
 

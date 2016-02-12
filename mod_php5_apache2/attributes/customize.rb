@@ -26,6 +26,4 @@ normal[:mod_php5_apache2][:packages] = [
     "php-devel",
     "php-pear-Mail",
     "php-pear-Mail-Mime"
-
-   
   ]

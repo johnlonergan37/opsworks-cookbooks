@@ -64,6 +64,22 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['ro']['hostname'] = '<%= @ro_db_host %>';
+$db['ro']['username'] = '<%= @ro_db_username %>';
+$db['ro']['password'] = '<%= @ro_db_password %>';
+$db['ro']['database'] = '<%= @ro_db_name %>';
+$db['ro']['dbdriver'] = 'mysql';
+$db['ro']['dbprefix'] = '';
+$db['ro']['pconnect'] = TRUE;
+$db['ro']['db_debug'] = TRUE;
+$db['ro']['cache_on'] = FALSE;
+$db['ro']['cachedir'] = '';
+$db['ro']['char_set'] = 'utf8';
+$db['ro']['dbcollat'] = 'utf8_general_ci';
+$db['ro']['swap_pre'] = '';
+$db['ro']['autoinit'] = TRUE;
+$db['ro']['stricton'] = FALSE;
+
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
