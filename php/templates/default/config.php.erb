@@ -378,9 +378,9 @@ function __autoload($class) {
     {  
         include_once(APPPATH."libraries/".strtolower($class).EXT);  
     }
-    else if (file_exists(APPPATH."libraries/".strtolower(str_replace("\\", "/", $class)).EXT)) 
-    {  
-        include_once(APPPATH."libraries/".strtolower(str_replace("\\", "/", $class)).EXT);  
+    else if (file_exists(APPPATH."libraries/".str_replace("\\", "/", $class).EXT))
+    {
+        include_once(APPPATH."libraries/".str_replace("\\", "/", $class).EXT);
     }
 } 
 }
