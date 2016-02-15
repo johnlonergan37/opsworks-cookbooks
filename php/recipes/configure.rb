@@ -80,4 +80,12 @@ node[:deploy].each do |application, deploy|
       :memcache_cluster_uri => node[:deploy][:ci_config][:memcache_cluster_uri]
     )
   end
+
+  directory "#{deploy[:deploy_to]}/current/application/logs/" do
+    recursive true
+    mode 0775
+    owner "deploy"
+    group "apache"
+    action :create
+  end
 end

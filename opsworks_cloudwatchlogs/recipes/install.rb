@@ -45,9 +45,4 @@ service "awslogs" do
   action [:enable, :start]
 end
 
-  directory "/srv/www/aginglessonbuddy/current/application/logs/" do
-    recursive true
-    mode 0775
-    owner "deploy"
-    group "apache"
-  end
+
