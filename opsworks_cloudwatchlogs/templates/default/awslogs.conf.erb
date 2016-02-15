@@ -24,7 +24,7 @@ file = <%= log_path %>
 <% end %>
 
 [apache.log]
-file = <%= node[:deploy][:ci_config][:web_root] + "/current/application/logs/log-*.php" %>
+file = <%= node[:deploy][:ci_config][:web_root] + "/application/logs/log-*.php" %>
 log_group_name = apache
 log_stream_name = <%= node["opsworks"]["instance"]["hostname"] %>
 datetime_format = %Y-%m-%d %H:%M:%S -->
