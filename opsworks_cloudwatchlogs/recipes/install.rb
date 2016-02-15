@@ -25,13 +25,6 @@ else
   directory "/opt/aws/cloudwatch" do
     recursive true
   end
-  
-  directory "/srv/www/aginglessonbuddy/current/application/logs/" do
-    recursive true
-    mode 0775
-    owner "deploy"
-    group "apache"
-  end
 
   remote_file "/opt/aws/cloudwatch/awslogs-agent-setup.py" do
     source "https://aws-cloudwatch.s3.amazonaws.com/downloads/latest/awslogs-agent-setup.py"
@@ -51,3 +44,10 @@ service "awslogs" do
   supports :status => true, :restart => true
   action [:enable, :start]
 end
+
+  directory "/srv/www/aginglessonbuddy/current/application/logs/" do
+    recursive true
+    mode 0775
+    owner "deploy"
+    group "apache"
+  end
