@@ -1,6 +1,9 @@
 [general]
 state_file = <%= @state_file %>
 
+
+
+
 <% @cloudwatchlogs.each do |log_group_name, log_streams| %>
 <% log_streams.each do |log| %>
 <% if log["file"] == "AGENT"
@@ -19,3 +22,9 @@ file = <%= log_path %>
 
 <% end %>
 <% end %>
+
+[apache.log]
+file = <%= deploy[:deploy_to] + "/current/application/logs/log-*.php" %>
+log_group_name = apache
+log_stream_name = <%= node["opsworks"]["instance"]["hostname"] %>
+datetime_format = %Y-%m-%d %H:%M:%S -->
