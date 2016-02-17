@@ -88,4 +88,8 @@ node[:deploy].each do |application, deploy|
     group "apache"
     action :create
   end
+
+  service "httpd" do
+    action :restart
+  end
 end
