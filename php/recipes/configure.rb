@@ -92,4 +92,8 @@ node[:deploy].each do |application, deploy|
   service "httpd" do
     action :restart
   end
+
+  service "awslogs" do
+    action :restart
+  end
 end
