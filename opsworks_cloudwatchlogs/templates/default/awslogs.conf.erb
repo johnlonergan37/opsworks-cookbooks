@@ -23,8 +23,16 @@ file = <%= log_path %>
 <% end %>
 <% end %>
 
-[apache.log]
+[apache.log.ERROR]
 file = <%= node[:deploy][:ci_config][:web_root] + "/application/logs/log-*.php" %>
 log_group_name = apache
-log_stream_name = <%= node["opsworks"]["instance"]["hostname"] %>
+log_stream_name = <%= node["opsworks"]["instance"]["hostname"] %>-error
+datetime_format = ERROR - %Y-%m-%d %H:%M:%S
+time_zone = LOCAL
+
+[apache.log.DEBUG]
+file = <%= node[:deploy][:ci_config][:web_root] + "/application/logs/log-*.php" %>
+log_group_name = apache
+log_stream_name = <%= node["opsworks"]["instance"]["hostname"] %>-debug
 datetime_format = DEBUG - %Y-%m-%d %H:%M:%S
+time_zone = LOCAL
