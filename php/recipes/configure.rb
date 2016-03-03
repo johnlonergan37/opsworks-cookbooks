@@ -50,7 +50,8 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
     variables(
       :encryption_key => node[:deploy][:ci_config][:encryption_key],
-      :lb_hostname => node[:deploy][:ci_config][:lb_hostname]
+      :lb_hostname => node[:deploy][:ci_config][:lb_hostname],
+      :lb_protocol => node[:deploy][:ci_config][:lb_protocol]
     )
     
   end
