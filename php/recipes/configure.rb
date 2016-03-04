@@ -97,4 +97,8 @@ node[:deploy].each do |application, deploy|
   service "awslogs" do
     action :restart
   end
+
+  execute "set_timezone" do
+    command 'sudo mv /etc/localtime /etc/localtime.bak; sudo ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime'
+  end
 end
