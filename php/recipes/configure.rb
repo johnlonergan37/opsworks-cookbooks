@@ -90,6 +90,10 @@ node[:deploy].each do |application, deploy|
     action :create
   end
 
+  execute "set_timezone" do
+    command 'sudo mv /etc/localtime /etc/localtime.bak; sudo ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime'
+  end
+
   service "httpd" do
     action :restart
   end
@@ -98,7 +102,5 @@ node[:deploy].each do |application, deploy|
     action :restart
   end
 
-  execute "set_timezone" do
-    command 'sudo mv /etc/localtime /etc/localtime.bak; sudo ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime'
-  end
+  
 end
