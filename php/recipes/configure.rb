@@ -55,19 +55,6 @@ node[:deploy].each do |application, deploy|
     )
     
   end
-  
-        # write out index.php
-  template "#{deploy[:deploy_to]}/current/index.php" do
-    cookbook 'php'
-    source 'index.php.erb'
-    mode '0660'
-    owner deploy[:user]
-    group deploy[:group]
-
-    variables(
-        :environment => node[:deploy][:ci_config][:environment]
-        )
-  end
 
         # write out php.ini
   template "/etc/php.ini" do
@@ -80,14 +67,6 @@ node[:deploy].each do |application, deploy|
       :timezone => node[:deploy][:ci_config][:timezone],
       :memcache_cluster_uri => node[:deploy][:ci_config][:memcache_cluster_uri]
     )
-  end
-
-  directory "#{deploy[:deploy_to]}/current/application/logs/" do
-    recursive true
-    mode 0775
-    owner "deploy"
-    group "apache"
-    action :create
   end
 
   execute "set_timezone" do
