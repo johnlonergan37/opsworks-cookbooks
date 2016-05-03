@@ -51,7 +51,9 @@ node[:deploy].each do |application, deploy|
     variables(
       :encryption_key => node[:deploy][:ci_config][:encryption_key],
       :lb_hostname => node[:deploy][:ci_config][:lb_hostname],
-      :lb_protocol => node[:deploy][:ci_config][:lb_protocol]
+      :lb_protocol => node[:deploy][:ci_config][:lb_protocol],
+      :rodb_on => node[:deploy][:ci_config][:rodb_on], 
+      :ruby_api_url => node[:deploy][:ci_config][:ruby_api_url]
     )
     
   end
