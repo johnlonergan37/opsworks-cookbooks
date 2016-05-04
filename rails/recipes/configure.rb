@@ -19,7 +19,7 @@ node[:deploy].each do |application, deploy|
     include_recipe "opsworks_postgresql::client_install"
   end
 
-  template "/srv/www/lessonbuddyaccountant/shared/config/database.yml" do
+  template "#{deploy[:deploy_to]}/shared/config/database.yml" do
     source "database.yml.erb"
     cookbook 'rails'
     mode "0660"
@@ -37,7 +37,7 @@ node[:deploy].each do |application, deploy|
     notifies :run, "execute[restart Rails app #{application}]"
 
     only_if do
-      deploy[:database][:host].present? && File.directory?("#{deploy[:deploy_to]}/shared/config/")
+      deploy[:host].present? && File.directory?("#{deploy[:deploy_to]}/shared/config/")
     end
   end
 
