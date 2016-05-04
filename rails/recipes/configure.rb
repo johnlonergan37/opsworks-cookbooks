@@ -25,7 +25,14 @@ node[:deploy].each do |application, deploy|
     mode "0660"
     group deploy[:group]
     owner deploy[:user]
-    variables(:database => deploy[:database], :environment => deploy[:rails_env])
+    variables(
+        :database => deploy[:database], 
+        :environment => deploy[:rails_env], 
+        deploy[:host] => node[:deploy][:ci_config][:db_host], 
+        deploy[:username] => node[:deploy][:ci_config][:db_username],
+        deploy[:password] => node[:deploy][:ci_config][:db_password],
+        deploy[:database] => node[:deploy][:ci_config][:db_name]
+         )
 
     notifies :run, "execute[restart Rails app #{application}]"
 
