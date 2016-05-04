@@ -71,17 +71,7 @@ node[:deploy].each do |application, deploy|
     )
   end
 
-    template "#{deploy[:deploy_to]}/current/index.php" do
-    cookbook 'php'
-    source 'index.php.erb'
-    mode '0660'
-    owner deploy[:user]
-    group deploy[:group]
 
-    variables(
-        :environment => node[:deploy][:ci_config][:environment]
-        )
-  end
 
   directory "#{deploy[:deploy_to]}/current/application/logs/" do
     recursive true
@@ -101,6 +91,18 @@ node[:deploy].each do |application, deploy|
 
   service "awslogs" do
     action :restart
+  end
+
+  template "#{deploy[:deploy_to]}/current/index.php" do
+    cookbook 'php'
+    source 'index.php.erb'
+    mode '0660'
+    owner deploy[:user]
+    group deploy[:group]
+
+    variables(
+        :environment => node[:deploy][:ci_config][:environment]
+        )
   end
 
   
