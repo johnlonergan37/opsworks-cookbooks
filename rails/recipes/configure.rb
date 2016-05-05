@@ -23,16 +23,16 @@ node[:deploy].each do |application, deploy|
     source "database.yml.erb"
     cookbook 'rails'
     mode "0660"
-    group deploy[:group]
-    owner deploy[:user]
+    group 'root'
+    owner 'root'
     variables(
-        :database => deploy[:database], 
-        :environment => deploy[:rails_env], 
         deploy[:host] => node[:deploy][:ci_config][:db_host], 
         deploy[:username] => node[:deploy][:ci_config][:db_username],
         deploy[:password] => node[:deploy][:ci_config][:db_password],
         deploy[:database] => node[:deploy][:ci_config][:db_name]
          )
+    puts " ----------------------------------------------------------------------------------------- "
+    puts deploy[:host].inspect
 
     notifies :run, "execute[restart Rails app #{application}]"
 
