@@ -23,7 +23,7 @@ node[:deploy].each do |application, deploy|
   end
 
   # write out opsworks.php
-  template "#{deploy[:deploy_to]}/current/application/config/database.php" do
+  template "#{deploy[:deploy_to]}/shared/config/database.php" do
     cookbook 'php'
     source 'database.php.erb'
     mode '0660'
@@ -42,7 +42,7 @@ node[:deploy].each do |application, deploy|
   end
 
     # write out opsworks.php
-  template "#{deploy[:deploy_to]}/current/application/config/config.php" do
+  template "#{deploy[:deploy_to]}/shared/config/config.php" do
     cookbook 'php'
     source 'config.php.erb'
     mode '0660'
