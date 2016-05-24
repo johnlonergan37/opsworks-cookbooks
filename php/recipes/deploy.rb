@@ -4,7 +4,7 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-        # write out index.php
+  # write out index.php
   template "#{deploy[:deploy_to]}/current/index.php" do
     cookbook 'php'
     source 'index.php.erb'
@@ -21,6 +21,12 @@ node[:deploy].each do |application, deploy|
     action :create
     link_type :symbolic
     to "#{deploy[:deploy_to]}/shared/config/config.php"
+  end
+
+  link "#{deploy[:deploy_to]}/current/application/config/database.php" do
+    action :create
+    link_type :symbolic
+    to "#{deploy[:deploy_to]}/shared/config/database.php"
   end
 
   directory "#{deploy[:deploy_to]}/current/application/logs/" do

@@ -71,16 +71,6 @@ node[:deploy].each do |application, deploy|
     )
   end
 
-
-
-  directory "#{deploy[:deploy_to]}/current/application/logs/" do
-    recursive true
-    mode 0775
-    owner "deploy"
-    group "apache"
-    action :create
-  end
-
   execute "set_timezone" do
     command 'sudo mv /etc/localtime /etc/localtime.bak; sudo ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime'
   end
@@ -93,17 +83,4 @@ node[:deploy].each do |application, deploy|
     action :restart
   end
 
-  template "#{deploy[:deploy_to]}/current/index.php" do
-    cookbook 'php'
-    source 'index.php.erb'
-    mode '0660'
-    owner deploy[:user]
-    group deploy[:group]
-
-    variables(
-        :environment => node[:deploy][:ci_config][:environment]
-        )
-  end
-
-  
 end
