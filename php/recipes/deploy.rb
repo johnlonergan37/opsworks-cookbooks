@@ -19,10 +19,8 @@ node[:deploy].each do |application, deploy|
 
   link "#{deploy[:deploy_to]}/shared/config/config.php" do
     action :create
-    retries 0
-    retry_delay 2
     link_type :symbolic
-    target_file "#{deploy[:deploy_to]}/current/application/config/config.php"
+    to "#{deploy[:deploy_to]}/current/application/config/config.php"
   end
 
   directory "#{deploy[:deploy_to]}/current/application/logs/" do
