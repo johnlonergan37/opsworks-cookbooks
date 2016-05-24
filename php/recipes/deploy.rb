@@ -18,7 +18,6 @@ node[:deploy].each do |application, deploy|
   end
 
   link "#{deploy[:deploy_to]}/current/application/config/config.php" do
-    cookbook 'php'
     action :create
     retries 0
     retry_delay 2
