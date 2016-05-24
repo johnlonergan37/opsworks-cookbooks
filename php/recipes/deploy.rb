@@ -17,40 +17,13 @@ node[:deploy].each do |application, deploy|
         )
   end
 
-  # write out opsworks.php
-  template "#{deploy[:deploy_to]}/current/application/config/database.php" do
+  link "#{deploy[:deploy_to]}/current/application/config/config.php" do
     cookbook 'php'
-    source 'database.php.erb'
-    mode '0660'
-    owner deploy[:user]
-    group deploy[:group]
-    variables(
-        :db_host => node[:deploy][:ci_config][:db_host],
-        :db_username => node[:deploy][:ci_config][:db_username],
-        :db_password => node[:deploy][:ci_config][:db_password],
-        :db_name => node[:deploy][:ci_config][:db_name],
-        :ro_db_host => node[:deploy][:ci_config][:ro_db_host],
-        :ro_db_username => node[:deploy][:ci_config][:ro_db_username],
-        :ro_db_password => node[:deploy][:ci_config][:ro_db_password],
-        :ro_db_name => node[:deploy][:ci_config][:ro_db_name]
-    )
-  end
-
-    # write out opsworks.php
-  template "#{deploy[:deploy_to]}/current/application/config/config.php" do
-    cookbook 'php'
-    source 'config.php.erb'
-    mode '0660'
-    owner deploy[:user]
-    group deploy[:group]
-    variables(
-      :encryption_key => node[:deploy][:ci_config][:encryption_key],
-      :lb_hostname => node[:deploy][:ci_config][:lb_hostname],
-      :lb_protocol => node[:deploy][:ci_config][:lb_protocol],
-      :rodb_on => node[:deploy][:ci_config][:rodb_on], 
-      :ruby_api_url => node[:deploy][:ci_config][:ruby_api_url]
-    )
-    
+    action :create
+    retries 0
+    retry_delay 2
+    link_type :symbolic
+    target_file "#{deploy[:deploy_to]}/shared/config/config.php"
   end
 
   directory "#{deploy[:deploy_to]}/current/application/logs/" do
